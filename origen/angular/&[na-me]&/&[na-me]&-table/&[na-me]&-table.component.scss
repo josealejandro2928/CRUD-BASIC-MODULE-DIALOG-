@@ -4,18 +4,19 @@
   padding: 16px;
   position: relative;
   box-sizing: border-box;
+
   @media (max-width: 800px) {
     padding: 16px 2px !important;
   }
 }
 
-mat-toolbar-row {
-  background-color: #fff !important;
-}
+// mat-toolbar-row {
+//   background-color: #fff !important;
+// }
 
-mat-toolbar {
-  background-color: #fff !important;
-}
+// mat-toolbar {
+//   background-color: #fff !important;
+// }
 
 table {
   width: 100%;
@@ -25,23 +26,12 @@ table {
   width: 100%;
 }
 
-#actionsHover {
-  color: #616161 !important;
-}
-
-.rowData {
-  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
-
-  &:hover {
-    background-color: #eee;
-  }
-}
-
 .responsive_table {
   max-height: 78vh;
   overflow: auto;
   padding: 1px;
   width: 100% !important;
+
   @media (max-width: 800px) {
     table {
       min-width: 800px !important;

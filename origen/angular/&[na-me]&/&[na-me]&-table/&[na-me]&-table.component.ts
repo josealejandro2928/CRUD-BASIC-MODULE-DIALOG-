@@ -47,7 +47,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
   selection: SelectionModel<any>;
   imageUrl: any;
   showActionsBtn = false;
-  language: 'es';
+  language =  'es';
   initialPage = 10;
   pageSizeOptions: number[] = [this.initialPage, 25, 100, 1000];
   searchElementCount = 0;

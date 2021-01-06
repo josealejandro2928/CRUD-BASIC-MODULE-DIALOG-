@@ -210,7 +210,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
       function run(schema){
         let result = '';
         for(let key in schema){
-          if(schema[key].showFieldInTable && (schema[key].type == "STRING" || schema[key].type == "LONG-STRING" || schema[key].type == "NUMBER" || schema[key].type == "ENUM" ) ){
+          if(schema[key].showFieldInTable && (schema[key].type == "STRING" || schema[key].type == "LONG-STRING" || schema[key].type == "JSON" || schema[key].type == "NUMBER" || schema[key].type == "ENUM" ) ){
             result+= `this.query.filter.properties.push('filter[$or][${key}][$like]'); \n \t \t \t`
           }
         }
@@ -356,7 +356,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(async (result) => {
       try {
         if (result) {
-          const data = await Promise.all(elements.map((item) => this.&[name]&Service.remove&[Name]&(item)));
+          const data = await Promise.all(elements.map((item) => this.&[name]&Service.remove&[Name]&(item).toPromise()));
           this.showToastr.showSucces('Elementos correctamente eliminados', 'Éxito', 7500);
           this.refreshData();
         }

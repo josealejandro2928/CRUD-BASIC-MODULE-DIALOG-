@@ -23,7 +23,7 @@ export class &[Name]&Service {
   }
 
   remove&[Name]&(data): Promise<any> {
-    return this.httpClient.delete<any>(this.urlId.replace(':id', data.id), this.httpOptions).toPromise();
+    return this.httpClient.delete<any>(this.urlId.replace(':id', data.id), this.httpOptions);
   }
 
   getAll&[Names]&(query?: IPagination, params?: any) {

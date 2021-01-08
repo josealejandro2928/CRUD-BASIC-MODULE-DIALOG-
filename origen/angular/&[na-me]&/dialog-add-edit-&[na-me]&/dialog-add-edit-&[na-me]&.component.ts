@@ -171,6 +171,8 @@ function run(schema){
         function run(schema){
           let result = '';
           for(let key in schema){
+            console.log('88888',key)
+            console.log('99999',schema[key]);
             if(schema[key].type!='IMAGE' && !schema[key].noCreate){
               if(schema[key].type == "JSON" && schema[key].isForTranslate){
                 result+=`${key}: [this.selected&[Name]&?.${key}[this.language],[`
@@ -289,10 +291,10 @@ function run(schema){
  //endRemplace
     if (!this.isEditing) {
       this.&[name]&Service.create&[Name]&(data).subscribe(
-        () => {
+        (output) => {
           this.showToastr.showSucces('Elemento creado correctamente');
           this.spinner.hide();
-          this.dialogRef.close(true);
+          this.dialogRef.close(output?.data);
         },
         (error) => {
           this.spinner.hide();
@@ -310,10 +312,10 @@ function run(schema){
         }
       }
       this.&[name]&Service.edit&[Name]&(dataOutput).subscribe(
-        () => {
+        (output) => {
           this.showToastr.showSucces('Elemento editado correctanmete');
           this.spinner.hide();
-          this.dialogRef.close(true);
+          this.dialogRef.close(output?.data);
         },
         (error) => {
           this.spinner.hide();

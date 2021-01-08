@@ -55,6 +55,5 @@ import { MatNativeDateModule } from '@angular/material/core';
     PipesModule
   ],
   declarations: [&[Name]&TableComponent, DialogAddEdit&[Name]&Component],
-  entryComponents: [DialogAddEdit&[Name]&Component],
 })
 export class &[Name]&Module {}

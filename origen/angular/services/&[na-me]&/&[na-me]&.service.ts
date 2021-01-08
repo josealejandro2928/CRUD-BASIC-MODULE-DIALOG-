@@ -22,7 +22,7 @@ export class &[Name]&Service {
     return this.httpClient.patch<any>(this.urlId.replace(':id', data.id), data, this.httpOptions);
   }
 
-  remove&[Name]&(data): Promise<any> {
+  remove&[Name]&(data): Observable<any> {
     return this.httpClient.delete<any>(this.urlId.replace(':id', data.id), this.httpOptions);
   }
 

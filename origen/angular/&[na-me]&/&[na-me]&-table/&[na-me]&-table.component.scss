@@ -10,6 +10,13 @@
   }
 }
 
+:host ::ng-deep {
+  .mat-form-field {
+    font-size: 12px !important;
+  }
+}
+
+
 // mat-toolbar-row {
 //   background-color: #fff !important;
 // }

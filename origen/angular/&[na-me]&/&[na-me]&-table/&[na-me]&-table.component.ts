@@ -17,6 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 //startRemplace
 function run(schema){
   let result = '';
@@ -105,6 +106,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public utilsService: UtilsService,
     private translateService: TranslateService,
+    public spinner: NgxSpinnerService,
     //startRemplace
  function run(schema){
   let result = '';
@@ -322,8 +324,11 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
   }
 
   onEdit&[Name]&(&[name]&): void {
+
+    this.spinner.show();
     this.&[name]&Service.get&[Name]&(&[name]&).subscribe(
       (data) => {
+        this.spinner.hide();
         let dialogRef: MatDialogRef<DialogAddEdit&[Name]&Component, any>;
         dialogRef = this.dialog.open(DialogAddEdit&[Name]&Component, {
           panelClass: 'app-dialog-add-edit-&[na-me]&',
@@ -340,6 +345,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
         });
       },
       (error) => {
+        this.spinner.hide();
       },
     );
   }

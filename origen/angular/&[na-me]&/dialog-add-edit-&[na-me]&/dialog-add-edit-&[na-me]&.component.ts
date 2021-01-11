@@ -171,11 +171,9 @@ function run(schema){
         function run(schema){
           let result = '';
           for(let key in schema){
-            console.log('88888',key)
-            console.log('99999',schema[key]);
             if(schema[key].type!='IMAGE' && !schema[key].noCreate){
               if(schema[key].type == "JSON" && schema[key].isForTranslate){
-                result+=`${key}: [this.selected&[Name]&?.${key}[this.language],[`
+                result+=`${key}: [this.selected&[Name]&?.${key}?.[this.language],[`
               }else if(schema[key].type == "JSON" && !schema[key].isForTranslate){
                 result+=`${key}: [this.selected&[Name]&?.${key},[`
               }else if(schema[key].type == "STRING" || schema[key].type == "NUMBER" 

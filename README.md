@@ -9,6 +9,7 @@ Si queremos que un campo de texto dea de tipo textarea y no input ponemos long.
 Si queremos un campo de texto que sea de tipo traduccion ponemos trans.
 Si queremos que un campo de texto sea de con un editor de texto enriquesido como ckeditor ponemos ck.
 
+```javascript
 Worker{
     avatar: img 
     name: '' + 
@@ -22,5 +23,7 @@ Worker{
     card: '' **
     description: json trans ck
 } 
+```
+
 
 2- El nombre del archivo .json debe llamarse struct.json

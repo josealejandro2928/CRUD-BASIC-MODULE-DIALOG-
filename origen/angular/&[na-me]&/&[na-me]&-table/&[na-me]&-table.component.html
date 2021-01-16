@@ -6,20 +6,20 @@
 <mat-toolbar class="toolbar-table">
   <mat-toolbar-row *ngIf="!selection.selected.length && !showFilter&[Name]&">
     <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
-      <span fxHide.xs class="mat-title mb-0">{{'Lista de &[names]&'}}</span>
-      <span fxHide fxShow.xs class="mat-title mb-0">{{'&[Names]&'}}</span>
+      <span fxHide.xs class="mat-title mb-0">{{'Lista de &[names]&'|translate}}</span>
+      <span fxHide fxShow.xs class="mat-title mb-0">{{'&[Names]&'|translate}}</span>
       <div fxHide.xs>
         <button mat-button (click)="showSearchForm()">
           <mat-icon>search</mat-icon>
-          <span fxHide.xs>{{'Buscar'}}</span>
+          <span fxHide.xs>{{'Buscar'|translate}}</span>
         </button>
         <button mat-button (click)="refreshData()">
           <mat-icon>refresh</mat-icon>
-          <span fxHide.xs>{{'Refrescar'}}</span>
+          <span fxHide.xs>{{'Refrescar'|translate}}</span>
         </button>
         <button mat-button (click)="onCreate&[Name]&()">
           <mat-icon>add</mat-icon>
-          <span fxHide.xs>{{'Adicionar'}}</span>
+          <span fxHide.xs>{{'Adicionar'|translate}}</span>
         </button>
       </div>
       <div fxHide fxShow.xs>
@@ -42,7 +42,7 @@
         <button mat-icon-button>
           <mat-icon matPrefix>search</mat-icon>
         </button>
-        <input [formControl]="searchForm.controls['textCtrl']" placeholder="{{'Entre su texto de búsqueda'}}"
+        <input [formControl]="searchForm.controls['textCtrl']" placeholder="{{'Entre su texto de búsqueda'|translate}}"
           class="example-full-width search-input" type="text" autofocus>
         <div>
           <button mat-icon-button (click)="hideSearchForm()">
@@ -57,16 +57,16 @@
     <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
       <div>
         <span fxHide.xs class="mat-title mb-0">{{selection.selected.length}}</span>
-        <span fxHide.xs class="ml-2 mat-title mb-0">{{'elementos seleccionados'}}</span>
+        <span fxHide.xs class="ml-2 mat-title mb-0">{{'elementos seleccionados'|translate}}</span>
       </div>
       <div>
         <button *ngIf="selection.selected.length==1" mat-button (click)="onEdit&[Name]&(selection.selected[0])">
           <mat-icon>edit</mat-icon>
-          <span fxHide.xs>{{'Editar'}}</span>
+          <span fxHide.xs>{{'Editar'|translate}}</span>
         </button>
         <button mat-button (click)="onRemove&[Names]&(selection.selected)">
           <mat-icon>remove</mat-icon>
-          <span fxHide.xs>{{'Eliminar'}}</span>
+          <span fxHide.xs>{{'Eliminar'|translate}}</span>
         </button>
       </div>
     </div>
@@ -103,7 +103,7 @@
     case "STRING":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="mat-body-1"> {{element.${key}}}</span>
@@ -113,7 +113,7 @@
     case "NUMBER":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="mat-body-1"> {{element.${key}}}</span>
@@ -123,7 +123,7 @@
     case "ENUM":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="mat-body-1"> {{element.${key}}}</span>
@@ -133,7 +133,7 @@
     case "BOOLEAN":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span style="color: #43a047;" *ngIf="element.${key}==true" class="material-icons">
@@ -148,7 +148,7 @@
     case "LONG-STRING":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <p class="mat-body-1"> {{element.${key}}}</p>
@@ -158,7 +158,7 @@
     case "IMAGE":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <img *ngIf="!element.${key}" src="assets/images/noImage.jpg"
@@ -172,7 +172,7 @@
     if(schema[key].isForTranslate){
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="mat-body-1"> {{element.${key} | parseLang: language }}</span>
@@ -181,7 +181,7 @@
     }else{
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <span class="mat-body-1"> {{element.${key}}}</span>
@@ -193,7 +193,7 @@
     case "DATE":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <p class="mat-body-1"> {{element.${key} | date}}</p>
@@ -203,7 +203,7 @@
     case "DATEONLY":
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <p class="mat-body-1"> {{element.${key} | date}}</p>
@@ -214,7 +214,7 @@
     if(!schema[key].isMultiple){
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <p class="mat-body-1"> {{ element?.${key.split('Id')[0]}?.${schema[key].targetAttribute} }}</p>
@@ -223,7 +223,7 @@
     }else{
     result += `<ng-container matColumnDef="${key}">
       <th mat-header-cell *matHeaderCellDef>
-        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'}}</span>
+        <span class="mat-body-2" style="text-transform: capitalize;">{{'${key}'|translate}}</span>
       </th>
       <td mat-cell *matCellDef="let element">
         <ul class="m-0" *ngFor="let item of element?.${key}">
@@ -276,8 +276,8 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-form-field class="remove-material-form-padding-bottom" style="width: 156px; margin-right: 8px"
           appearance="outline">
-          <mat-label style="text-transform: capitalize;"> {{ '${key}' }}</mat-label>
-          <input type="text" matInput [formControl]="formFilters.get('${key}')" placeholder="{{ '${key}' }}" />
+          <mat-label style="text-transform: capitalize;"> {{ '${key}'|translate }}</mat-label>
+          <input type="text" matInput [formControl]="formFilters.get('${key}')" placeholder="{{ '${key}'|translate }}" />
           <button matSuffix mat-icon-button (click)="formFilters.get('${key}').reset()">
             <mat-icon> clear </mat-icon>
           </button>
@@ -289,8 +289,8 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-form-field class="remove-material-form-padding-bottom" style="width: 156px; margin-right: 8px"
           appearance="outline">
-          <mat-label style="text-transform: capitalize;"> {{ '${key}' }}</mat-label>
-          <mat-select [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'}}">
+          <mat-label style="text-transform: capitalize;"> {{ '${key}'|translate }}</mat-label>
+          <mat-select [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'|translate}}">
             <mat-option *ngFor="let ${key} of [{id:1,name:'True'},{id:0,name:'False'}];let i=index" [value]="${key}.id">
               <div fxLayout="row" fxLayoutAlign="start center">
                 <span class="mat-body-2">
@@ -310,7 +310,7 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-form-field class="remove-material-form-padding-bottom" style="width: 156px; margin-right: 8px"
           appearance="outline">
-          <mat-select multiple [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'}}">
+          <mat-select multiple [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'|translate}}">
             <mat-option
               *ngFor="let ${key} of all${schema[key].targetTable.substring(0,1).toUpperCase()}${schema[key].targetTable.substring(1,key.length)} ;let i=index"
               [value]="${key}.id">
@@ -332,7 +332,7 @@
       <th mat-header-cell *matHeaderCellDef>
         <mat-form-field class="remove-material-form-padding-bottom" style="width: 156px; margin-right: 8px"
           appearance="outline">
-          <mat-select multiple [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'}}">
+          <mat-select multiple [formControl]="formFilters.get('${key}')" placeholder="{{'${key}'|translate}}">
             <mat-option
               *ngFor="let ${key} of all${key.substring(0,1).toUpperCase()}${key.substring(1,key.length)} ;let i=index"
               [value]="${key}">

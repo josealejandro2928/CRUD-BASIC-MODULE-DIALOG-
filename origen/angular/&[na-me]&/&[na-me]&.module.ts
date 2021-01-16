@@ -25,6 +25,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgpImagePickerModule } from 'ngp-image-picker';
 import { PipesModule } from 'src/app/core/pipes/pipes.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TranslateModule } from '@ngx-translate/core';
 ///////////////////////////////////////////////////////////////////
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     NgpImagePickerModule,
-    PipesModule
+    PipesModule,
+    TranslateModule
   ],
   declarations: [&[Name]&TableComponent, DialogAddEdit&[Name]&Component],
 })

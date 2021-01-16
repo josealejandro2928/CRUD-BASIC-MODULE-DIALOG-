@@ -2,8 +2,8 @@
 
   <mat-toolbar class="mb-2" matDialogTitle color="primary" id="toolbarHeader">
     <mat-toolbar-row fxLayoutAlign="space-between center">
-      <span *ngIf="!isEditing" class="mat-title mb-0">{{'Add &[name]&'}}</span>
-      <span *ngIf="isEditing" class="mat-title mb-0">{{'Edit &[name]&'}}</span>
+      <span *ngIf="!isEditing" class="mat-title mb-0">{{'Add &[name]&'|translate}}</span>
+      <span *ngIf="isEditing" class="mat-title mb-0">{{'Edit &[name]&'|translate}}</span>
       <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
         <mat-icon>close</mat-icon>
       </button>
@@ -28,14 +28,14 @@
            result = `<div fxLayout="row" class="mt-2" fxLayoutAlign="start start" fxLayoutGap="gappx">
             <span class="mat-body-2" style="text-transform: uppercase"
               >{{ 'Seleccione su idioma de creación' }}
-              <mat-icon matTooltip="{{ 'El predeterminado es español' }}" class="iconHelp">help</mat-icon>
+              <mat-icon matTooltip="{{ 'El predeterminado es español'|translate }}" class="iconHelp">help</mat-icon>
             </span>
           </div>
   
           <div fxLayout="row" class="mt-2" fxLayoutAlign="start start" fxLayoutGap="gappx">
             <mat-form-field fxFlex="100" appearance="outline">
               <mat-label> {{ 'Language' }}</mat-label>
-              <mat-select required [formControl]="languageForm" placeholder="{{ 'Language' }}">
+              <mat-select required [formControl]="languageForm" placeholder="{{ 'Language' |translate}}">
                 <mat-option *ngFor="let language of this.languages; let i = index" [value]="language.lang">
                   <div fxLayout="row" fxLayoutAlign="start center">
                     <img [src]="language.image" style="height: 30px; width: 30px" />
@@ -62,8 +62,8 @@
                 if(schema[key].type=='IMAGE'){
                   result+=`<div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutAlign.lt-sm="center stretch" class="mb-2">
                     <div fxLayout="row" class="mt-2" fxLayoutAlign="start start" fxLayoutGap="gappx">
-                      <span class="mat-body-2" style="text-transform: uppercase;">{{'Seleccione la imagen para ${key}'}}
-                        <mat-icon matTooltip="{{'ALguna etiqueta de ayuda referida al ícono'}}" class="iconHelp">help
+                      <span class="mat-body-2" style="text-transform: uppercase;">{{'Seleccione la imagen para ${key}'|translate}}
+                        <mat-icon matTooltip="{{'ALguna etiqueta de ayuda referida al ícono'|translate}}" class="iconHelp">help
                         </mat-icon></span>
                     </div>
     
@@ -87,9 +87,9 @@
                   result+=` 
                   <mat-form-field fxFlex="${schema[key].fxFlex || 48}" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>
-                       <span >{{'${key}'}}</span>
+                       <span >{{'${key}'|translate}}</span>
                     </mat-label>
-                    <input matInput [formControl]="form.get('${key}')" placeholder="{{'${key}'}}" ${schema[key].isRequired?'required':''} `
+                    <input matInput [formControl]="form.get('${key}')" placeholder="{{'${key}'|translate}}" ${schema[key].isRequired?'required':''} `
                 
                   if(schema[key].isPassword){
                     result+=`type="password"></mat-form-field>`
@@ -101,23 +101,23 @@
                 }else if((schema[key].type == "JSON" && schema[key].longTxt) || schema[key].type == "LONG-STRING" ){
                   if(schema[key].useCkEditor){
                     result+=`<div fxFlex="100" class="mb-3">
-                      <p class="mt-0 mb-2"> <span >{{'${key}'}}</span></p>
+                      <p class="mt-0 mb-2"> <span >{{'${key}'|translate}}</span></p>
                       <ckeditor [config]="config" [editor]="Editor" [formControl]="form.get('${key}')" tagName="textarea">
                       </ckeditor>
                     </div>`
                   }else{
                     result+=` <mat-form-field fxFlex="${schema[key].fxFlex || 48}" fxFlex.lt-md="100" appearance="outline">
                       <mat-label>
-                         <span >{{'${key}'}}</span>
+                         <span >{{'${key}'|translate}}</span>
                       </mat-label>
                       <textarea ${schema[key].isRequired?'required':''}  rows="2" matInput  [formControl]="form.get('${key}')"
-                      placeholder="{{'${key}'}}"></textarea>
+                      placeholder="{{'${key}'|translate}}"></textarea>
                     </mat-form-field>`
                   }
                 }else if(schema[key].type == "DATE" || schema[key].type == "DATEONLY"){
                   result+=`<mat-form-field fxFlex="${schema[key].fxFlex || 48}" fxFlex.lt-md="100" appearance="outline">
                     <mat-label>
-                       <span >{{'${key}'}}</span>
+                       <span >{{'${key}'|translate}}</span>
                     </mat-label>
                     <input ${schema[key].isRequired?'required':''} [formControl]="form.get('${key}')" matInput [matDatepicker]="picker${i}">
                     <mat-datepicker-toggle matSuffix [for]="picker${i}"></mat-datepicker-toggle>
@@ -133,7 +133,7 @@
                     <mat-label>
                        <span >{{'${key}'}}</span>
                     </mat-label>
-                    <mat-select ${schema[key].isRequired?'required':''} [formControl]="form.get('${key}')" placeholder="{{'${key}'}}">
+                    <mat-select ${schema[key].isRequired?'required':''} [formControl]="form.get('${key}')" placeholder="{{'${key}'|translate}}">
                       <mat-option *ngFor="let ${key} of all${key.substring(0,1).toUpperCase()}${key.substring(1,key.length)} ;let i=index" [value]="${key}">
                         <div fxLayout="row" fxLayoutAlign="start center">
                           <span class="mat-body-2">
@@ -147,9 +147,9 @@
                   
                   result+=`<mat-form-field fxFlex="${schema[key].fxFlex || 48}" fxFlex.lt-md="100"  appearance="outline">
                     <mat-label> 
-                      <span >{{'${key}'}}</span>
+                      <span >{{'${key}'|translate}}</span>
                     </mat-label>
-                    <mat-select ${schema[key].isMultiple?'multiple':''}  ${schema[key].isRequired?'required':''} [formControl]="${schema[key].isMultiple?`form.get('${key}Ids')`:`form.get('${key}')`}" placeholder="{{'${key}'}}">
+                    <mat-select ${schema[key].isMultiple?'multiple':''}  ${schema[key].isRequired?'required':''} [formControl]="${schema[key].isMultiple?`form.get('${key}Ids')`:`form.get('${key}')`}" placeholder="{{'${key}'|translate}}">
                       <mat-option *ngFor="let ${key} of all${schema[key].targetTable.substring(0,1).toUpperCase()}${schema[key].targetTable.substring(1,key.length)} ;let i=index" [value]="${key}.id">
                         <div fxLayout="row" fxLayoutAlign="start center">
                           <span class="mat-body-2">

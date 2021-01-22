@@ -59,6 +59,7 @@ export class DialogAddEdit&[Name]&Component implements OnInit, OnDestroy {
   language: any;
   _unsubscribeAll: Subject<any>;
   selected&[Name]& = null;
+  initialDataFormValue:any;
   imagePickerConf: ImagePickerConf = {
     borderRadius: '4px',
     language: 'es',
@@ -208,7 +209,6 @@ function run(schema){
           return result
         }
       //endRemplace
-    
     //startRemplace
        function run(schema){
         let result = ''; 
@@ -220,9 +220,9 @@ function run(schema){
         }
         return result;
       }
-      
-    
     //endRemplace
+
+    this.initialDataFormValue = JSON.parse(JSON.stringify({...this.form.value,...this.languageData}));
   }
 
   fetchData(){
@@ -305,7 +305,7 @@ function run(schema){
     } else {
       let dataOutput = { id: this.selected&[Name]&.id };
       for (let key in data) {
-        if (!this.utilsService.isObjectEquals(this.selected&[Name]&[key], data[key])) {
+        if (!this.utilsService.isObjectEquals(this.initialDataFormValue[key], data[key])) {
           dataOutput[key] = data[key];
         }
       }

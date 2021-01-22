@@ -166,6 +166,7 @@ export class &[Name]&TableComponent implements OnInit, OnDestroy {
 
     this.formFilters.valueChanges.pipe(debounceTime(500)).subscribe((data) => {
       this.refreshData();
+      this.paginator.firstPage();
     });
      //////////////////////////////////////////////
      this.fetchData();

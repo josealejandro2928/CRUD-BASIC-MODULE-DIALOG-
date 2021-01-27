@@ -1,6 +1,6 @@
 <div class="dialog-content-wrapper">
 
-  <mat-toolbar class="mb-2" matDialogTitle color="primary" id="toolbarHeader">
+  <mat-toolbar matDialogTitle color="primary" id="toolbarHeader">
     <mat-toolbar-row fxLayoutAlign="space-between center">
       <span *ngIf="!isEditing" class="mat-title mb-0">{{'Add &[name]&'|translate}}</span>
       <span *ngIf="isEditing" class="mat-title mb-0">{{'Edit &[name]&'|translate}}</span>
@@ -10,7 +10,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div mat-dialog-content class="my-dialog-content">
+  <div mat-dialog-content >
     <form [formGroup]="form" fxLayout="column" fxLayoutAlign="start stretch" >
         //startRemplace
         function run(schema){

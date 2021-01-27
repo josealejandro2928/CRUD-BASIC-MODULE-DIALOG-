@@ -3,9 +3,9 @@ import { environment } from 'src/environments/environment';
 import {
   Component,
   Inject,
-  ViewEncapsulation,
   OnInit,
   OnDestroy,
+  ViewEncapsulation
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

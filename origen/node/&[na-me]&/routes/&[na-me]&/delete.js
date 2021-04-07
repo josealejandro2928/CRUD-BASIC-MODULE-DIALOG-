@@ -1,21 +1,24 @@
 'use strict';
-
-module.exports = delete&[Name]&;
+const &[name]&Service = require('../../services/&[na-me]&/index');
 
 
 async function delete&[Name]& (req, res) {
-  var jsonAPI = global.app.utils.jsonAPI;
+  let jsonAPI = global.app.utils.jsonAPI;
   try {
-    await req.&[name]&.destroy();
+    await &[name]&Service.delete(req.&[name]&.id);
     return res.sendStatus(204); // No Content.
   } catch (error) {
+    let status = (error.name == global.app.orm.Sequelize.ValidationError)?400:error.status;
     global.app.utils.logger.error(error, {
       module: '&[na-me]&/delete',
       submodule: 'routes',
       stack: error.stack
     });
-    return res.status(error.status || 500).json(jsonAPI.processErrors(error, req, {
-      file: __filename
-    }));
+    return res.status(status||500)
+      .json(jsonAPI.processErrors(error, req, {
+        file: __filename
+      }));
   }
 };
+
+module.exports = delete&[Name]&;

@@ -6,15 +6,15 @@ exports.registry = function registry() {
   var &[name]&CollectionRoute = apiRoute + '/&[na-me]&';
 
   global.app.express.route(&[name]&CollectionRoute)
-        .post(global.security.ensureAuthenticated(),global.security.ensureHasRol('Admin'),require('./create'))
+        .post(global.security.ensureAuthenticated(),require('./create'))
         .get(require('./index'));
 
   var &[name]&SingleRoute = &[name]&CollectionRoute + '/:&[name]&Id';
 
   global.app.express.route(&[name]&SingleRoute)
-        .patch(global.security.ensureAuthenticated(),global.security.ensureHasRol('Admin'),ensure&[Name]&Id,require('./update'))
+        .patch(global.security.ensureAuthenticated(),ensure&[Name]&Id,require('./update'))
         .get(ensure&[Name]&Id,require('./show'))
-        .delete(global.security.ensureAuthenticated(),global.security.ensureHasRol('Admin'),ensure&[Name]&Id,require('./delete'));
+        .delete(global.security.ensureAuthenticated(),ensure&[Name]&Id,require('./delete'));
 
   async function ensure&[Name]&Id (req,res,next){
     let &[name]&Id = req.params.&[name]&Id || -1; 
@@ -29,7 +29,6 @@ exports.registry = function registry() {
       return next();
     }catch(error){
       return res.status(error.status||500).json({errors:[{message:error.message}]})
-
     }
 
   }

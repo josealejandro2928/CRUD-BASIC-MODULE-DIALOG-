@@ -1,20 +1,19 @@
 'use strict';
-
-module.exports = list&[Name]&
+const &[name]&Service = require('../../services/&[na-me]&/index');
 
 
 async function list&[Name]& (req, res) {
-  var models = global.models;
-  var jsonAPI = global.app.utils.jsonAPI;
+  const models = global.app.orm.sequelize.models;
+  let jsonAPI = global.app.utils.jsonAPI;
 
-  var jsonAPIBody = {
+  let jsonAPIBody = {
     meta: {
       pagination: {}
     },
     data: []
   };
 
-  var query = jsonAPI.buildQueryFromReq({
+  let query = jsonAPI.buildQueryFromReq({
     req: req,
     model: models.&[Name]&
   });
@@ -24,20 +23,20 @@ async function list&[Name]& (req, res) {
   /*query includes put here*/
 
   try {
-    let &[names]& = await models.&[Name]&.findAll(query);
-    jsonAPIBody.data = &[names]&;
-    jsonAPIBody.meta.pagination.count = &[names]&.length;
-    global.app.utils.jsonAPI.cleanQuery(query);
-    let total = await models.&[Name]&.count(query);
-    jsonAPIBody.meta.pagination.total = total;
-    return res.status(200).json(jsonAPIBody); // OK.
-
+    jsonAPIBody = await &[name]&Service.list(query);
+    return res.status(200).json(jsonAPIBody);
   } catch (error) {
-    console.log("***ERROR LISTANDO***", error)
-    return res.status(error.status || 500).json({
-      errors: [{
-        message: error.message
-      }]
+    let status = (error.name == global.app.orm.Sequelize.ValidationError)?400:error.status;
+    global.app.utils.logger.error(error, {
+      module: '&[na-me]&/list',
+      submodule: 'routes',
+      stack: error.stack
     });
+    return res.status(status||500)
+      .json(jsonAPI.processErrors(error, req, {
+        file: __filename
+    }));
   }
 };
+
+module.exports = list&[Name]&

@@ -1,30 +1,30 @@
 'use strict';
+const &[name]&Service = require('../../services/&[na-me]&/index');
 
-module.exports = update&[Name]&;
 
 async function update&[Name]&(req, res) {
 
-  var jsonAPI = global.app.utils.jsonAPI;
-  var models = global.models;
+  let jsonAPI = global.app.utils.jsonAPI;
+  const models = global.app.orm.sequelize.models;
 
   try{
-    let &[name]& = await global.db.sequelize.transaction(async (t) => {
-                      await req.&[name]&.update(req.body,{transaction:t});
-                      let data = await models.&[Name]&.findByPk(req.&[name]&.id, {include: [{all: true}],transaction:t});
-                      return data
-                   })
-    return res.status(200).json({data:&[name]&.toJSON()}); // OK.
+    let response =  await &[name]&Service.update(req.body,req.&[name]&.id);
+    return res.status(200).json(response); // OK.
+
   }catch(error){
+    let status = (error.name == global.app.orm.Sequelize.ValidationError)?400:error.status;
     global.app.utils.logger.error(error, {
-      module: '&[name]&/update',
+      module: '&[na-me]&/update',
       submodule: 'routes',
       stack: error.stack
     });
-    return res.status(error.status || 500)
+
+    return res.status(status||500)
       .json(jsonAPI.processErrors(error, req, {
         file: __filename
       }));
-
   }
 
 };
+
+module.exports = update&[Name]&;

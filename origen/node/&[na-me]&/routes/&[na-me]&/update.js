@@ -8,7 +8,14 @@ async function update&[Name]&(req, res) {
   const models = global.app.orm.sequelize.models;
 
   try{
-    let response =  await &[name]&Service.update(req.body,req.&[name]&.id);
+    let user = req.loggedUser;
+    let {body, errors} = checkAndPrepareBody(req.body, user);
+
+    if (errors && errors.length) {
+      return res.status(400).json({ errors: errors });
+    }
+
+    let response =  await &[name]&Service.update(body,req.&[name]&.id);
     return res.status(200).json(response); // OK.
 
   }catch(error){
@@ -26,5 +33,15 @@ async function update&[Name]&(req, res) {
   }
 
 };
+
+function checkAndPrepareBody(data, user=undefined) {
+  let errors = [];
+  //Chequeando estructura que proviene del body
+   
+  /////////////////////////////////////////
+  let body = {...data};
+  return { body: body, errors: errors };
+}
+
 
 module.exports = update&[Name]&;

@@ -1,6 +1,5 @@
 'use strict';
 
-var lodash = require('lodash');
   //startRemplace
   function run(schema){  
     for(let key in schema){

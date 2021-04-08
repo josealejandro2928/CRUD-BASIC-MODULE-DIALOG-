@@ -2,17 +2,21 @@
 
 const &[name]&Service = require('../../services/&[na-me]&/index');
 
-module.exports = create&[Name]&;
-
 async function create&[Name]& (req, res) {
   const models = global.app.orm.sequelize.models;
   let jsonAPI = global.app.utils.jsonAPI;
   let jsonAPIBody = {
     data: {}
   };
-
   try {
-    jsonAPIBody.data = await &[name]&Service.create(req.body)
+    let user = req.loggedUser;
+    let {body, errors} = checkAndPrepareBody(req.body, user);
+
+    if (errors && errors.length) {
+      return res.status(400).json({ errors: errors });
+    }
+
+    jsonAPIBody.data = await &[name]&Service.create(body)
     return res.status(201).json(jsonAPIBody); // OK.
   } catch (error) {
     let status = (error.name == global.app.orm.Sequelize.ValidationError)?400:error.status;
@@ -27,3 +31,14 @@ async function create&[Name]& (req, res) {
       }));
   }
 }
+
+function checkAndPrepareBody(data, user=undefined) {
+  let errors = [];
+  //Chequeando estructura que proviene del body
+   
+  /////////////////////////////////////////
+  let body = {...data};
+  return { body: body, errors: errors };
+}
+
+module.exports = create&[Name]&;

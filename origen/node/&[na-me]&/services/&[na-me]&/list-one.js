@@ -17,7 +17,7 @@
  *
  * @returns
  * {
- *   {data:{name:'Example1'}}
+ *   { data:{name:'Example1'} }
  * }
  *
  */

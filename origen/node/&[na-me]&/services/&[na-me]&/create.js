@@ -32,5 +32,5 @@ module.exports = async function create(data, t = undefined) {
   
   let &[name]& = await models.&[Name]&.create(body,{transition:t});
   // Devolucion de la funcion
-  return &[name]&
+  return {data:&[name]&}
 };

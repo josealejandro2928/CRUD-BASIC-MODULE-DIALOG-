@@ -9,13 +9,13 @@ async function update&[Name]&(req, res) {
 
   try{
     let user = req.loggedUser;
-    let {body, errors} = checkAndPrepareBody(req.body, user);
+    let {body, errors} = checkAndPrepareBody(req.body,req.&[name]&, user);
 
     if (errors && errors.length) {
       return res.status(400).json({ errors: errors });
     }
 
-    let response =  await &[name]&Service.update(body,req.&[name]&.id);
+    let response =  await &[name]&Service.update(body,req.&[name]&);
     return res.status(200).json(response); // OK.
 
   }catch(error){
@@ -33,8 +33,13 @@ async function update&[Name]&(req, res) {
   }
 
 };
-
-function checkAndPrepareBody(data, user=undefined) {
+/**
+ * 
+ * @param {*} data body mandado por el cliente
+ * @param {*} &[name]& instancia actual del objeto a editar 
+ * @param {*} user  usuario que realiza la operación
+ */
+function checkAndPrepareBody(data,&[name]&, user=undefined) {
   let errors = [];
   //Chequeando estructura que proviene del body
    

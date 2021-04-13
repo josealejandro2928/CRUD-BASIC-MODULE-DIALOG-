@@ -16,7 +16,7 @@ async function create&[Name]& (req, res) {
       return res.status(400).json({ errors: errors });
     }
 
-    jsonAPIBody.data = await &[name]&Service.create(body)
+    jsonAPIBody = await &[name]&Service.create(body)
     return res.status(201).json(jsonAPIBody); // OK.
   } catch (error) {
     let status = (error.name == global.app.orm.Sequelize.ValidationError)?400:error.status;
@@ -31,7 +31,11 @@ async function create&[Name]& (req, res) {
       }));
   }
 }
-
+/**
+ * 
+ * @param {*} data body mandado por el cliente
+ * @param {*} user usuario que realiza la operación
+ */
 function checkAndPrepareBody(data, user=undefined) {
   let errors = [];
   //Chequeando estructura que proviene del body

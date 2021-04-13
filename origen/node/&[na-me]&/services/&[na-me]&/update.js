@@ -25,11 +25,11 @@ function run(schema){
 }
 //endRemplace
 
-module.exports = async function update(data, id, t = undefined) {
+module.exports = async function update(data, &[name]&, t = undefined) {
   let models = global.app.orm.sequelize.models;
   let dataBase = global.app.orm.sequelize;
   let updateBody = { ...data };
-  await models.&[Name]&.update(updateBody, { where:{id:id } , transaction: t });
-  let &[name]& =  await models.&[Name]&.findByPk(id,{transaction:t});
-  return &[name]&;
+  await &[name]&.update(updateBody, { transaction: t });
+  &[name]& =  await models.&[Name]&.findByPk(&[name]&.id,{transaction:t});
+  return {data:&[name]&};
 };

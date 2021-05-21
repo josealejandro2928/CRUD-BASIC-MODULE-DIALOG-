@@ -30,7 +30,7 @@ module.exports = async function create(data, t = undefined) {
   /**Prepara el body para la creacion del recurso */
   let body = {...data};
   
-  let &[name]& = await models.&[Name]&.create(body,{transition:t});
+  let &[name]& = await models.&[Name]&.create(body,{transaction:t});
   // Devolucion de la funcion
   return {data:&[name]&}
 };

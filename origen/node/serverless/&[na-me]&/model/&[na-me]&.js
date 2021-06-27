@@ -10,12 +10,12 @@
     return '';
   }
   //endRemplace
-exports.loadModel = function loadModel() {
-    let orm = global.app.orm;
-    const &[Name]& = orm.sequelize.define('&[Name]&',
-       {...orm.mixins.attributes,
+module.exports = function (sequelize, DataTypes) {
+
+    const &[Name]& = sequelize.define('&[Name]&',
+       {
         id: {
-            type: orm.Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
         },
@@ -30,19 +30,19 @@ exports.loadModel = function loadModel() {
                 }
                 switch (schema[key].type) {
                     case "STRING":
-                        result+=`"type":orm.Sequelize.STRING, \n \t`;
+                        result+=`"type":DataTypes.STRING, \n \t`;
                         break;
                     case "LONG-STRING":
-                        result+=`"type":orm.Sequelize.TEXT('long'), \n \t`;
+                        result+=`"type":DataTypes.TEXT('long'), \n \t`;
                         break;
                     case "IMAGE":
-                        result+=`"type":orm.Sequelize.STRING, \n \t`;
+                        result+=`"type":DataTypes.STRING, \n \t`;
                         break;
                     case "BOOLEAN":
-                        result+=`"type":orm.Sequelize.BOOLEAN, \n \t`;
+                        result+=`"type":DataTypes.BOOLEAN, \n \t`;
                         break;
                     case "JSON":
-                        result+=`"type":orm.Sequelize.TEXT('long'), 
+                        result+=`"type":DataTypes.TEXT('long'), 
                         "set": function (value) {
                             this.setDataValue('${key}', JSON.stringify(value));
                         },
@@ -62,26 +62,26 @@ exports.loadModel = function loadModel() {
                         break;
                     
                     case "DATE":
-                        result+=`"type":orm.Sequelize.DATE, \n \t`;
+                        result+=`"type":DataTypes.DATE, \n \t`;
                     break;
                     case "DATEONLY":
-                        result+=`"type":orm.Sequelize.DATEONLY, \n \t`;
+                        result+=`"type":DataTypes.DATEONLY, \n \t`;
                     break;
                     case "NUMBER":
                         if(schema[key].isDecimal){
-                            result+=`"type":orm.Sequelize.DOUBLE, \n \t`;
+                            result+=`"type":DataTypes.DOUBLE, \n \t`;
                         }else{
-                            result+=`"type":orm.Sequelize.INTEGER, \n \t`;
+                            result+=`"type":DataTypes.INTEGER, \n \t`;
                         }
                     break;
                     case "ENUM":
-                        result+=`"type":orm.Sequelize.ENUM,
+                        result+=`"type":DataTypes.ENUM,
                         "values":${JSON.stringify(schema[key].values)},
                         "defaultValue": "${schema[key].values[0]}",`;
                     break;
                     case "REFERENCE":
                         if(!schema[key].isMultiple){
-                            result+=`"type":orm.Sequelize.INTEGER,\t
+                            result+=`"type":DataTypes.INTEGER,\t
                             "references": {
                                 "model": "${schema[key].targetTable}",
                                 "key": "id"
@@ -113,7 +113,9 @@ exports.loadModel = function loadModel() {
                     result +=`}\n,`
                 }
             }
-            return result;
+            return result + `deletedAt: {
+                type: DataTypes.DATE,
+              }`;
         } 
     //endRemplace
         }, {
@@ -124,8 +126,7 @@ exports.loadModel = function loadModel() {
 
             }
         });
-    &[Name]&.associate = function () {
-        const models = orm.sequelize.models;
+    &[Name]&.associate = function (models) {
         //startRemplace
          function run(schema){  
             let result = '';
@@ -155,5 +156,6 @@ exports.loadModel = function loadModel() {
         }
         //endRemplace
     }
+    return &[Name]&
 
 };

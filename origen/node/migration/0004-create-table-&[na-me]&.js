@@ -101,9 +101,13 @@ module.exports = {
             },
         };
         return queryInterface
-            .createTable(tableName, tableDefinition);
+            .createTable(tableName, tableDefinition).catch(error=>{
+                console.log("ERROR EJECUTANDO UP DE MIGRACION",error);
+            })
     },
     down: function (queryInterface) {
-        return queryInterface.dropTable(tableName);
+        return queryInterface.dropTable(tableName).catch(error=>{
+            console.log("ERROR EJECUTANDO DOWN DE MIGRACION",error);
+        })
     }
 };
